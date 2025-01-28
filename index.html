@@ -1,69 +1,48 @@
 <html>
 <head>
-<!--Dies ist ein Kommentar. Kommentare werden im Browser nicht angezeigt-->
-    <!--Hier kann der Seitentitel geändert werden:-->
-	<title>#dekretmix</title>
-  
-  <!--im <style> sind Position und Transformationen für das Textfeld angelegt:
-skewY, skewX, rotateY, rotateX und rotateZ bewirken unterschiedliche Winkel
-Verändere die Zahlen in der Klammer (deg) und teste, was es bewirkt
-left, top, width und heigh positionieren das Textfeld über dem Bild
-Verändere die Zahlen vor px und erkenne die Unterschiede
-text-shadow wird hier eingesetzt um eine Unschärfe zu produzieren
-Verändere die 1px black z.B. zu 7px red und schau' was passiert
-color ist hier transparent ausgewählt, damit der Text als Unschärfe dargestellt wird.
-wähle z.B. color: green und schau' was passiert
-font-family gibt die Schriftart an - hier kannst du z.B. cursive oder fantasy ausprobieren
--->
-	<style>
-	.eo {
-		transform: skewY(7deg) skewX(0deg) rotateY(4deg) rotateX(3deg) rotateZ(0.6deg);
-		position: absolute;
-		left: 380px;
-		top: 290px;
-		width: 215px;
-		height: 240px;
-		text-shadow: 0 0 1px black;
-		color: transparent;
-		font-family: monospace;
-	}
-	</style>
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <!-- Dies ist ein Kommentar. Kommentare werden im Browser nicht angezeigt -->
+    <!-- Hier kann der Seitentitel geändert werden: -->
+    <title>#dekretmix</title>
 
-  ga('create', 'UA-70485882-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
+    <!-- Im <style> sind Position und Transformationen für das Textfeld angelegt -->
+    <style>
+        .eo {
+            transform: skewY(7deg) skewX(0deg) rotateY(4deg) rotateX(3deg) rotateZ(0.6deg);
+            position: absolute;
+            left: 380px;
+            top: 290px;
+            width: 215px;
+            height: 240px;
+            text-shadow: 0 0 1px black;
+            color: transparent;
+            font-family: monospace;
+        }
+    </style>
 </head>
-<body>
-<body style='perspective: 400px'>
-<div style='margin: 50px; position: absolute; left: 0; top: 0; z-index: 50'>
-   <!--Hier kann die Bildquelle geändert werden. Code und Bild sind von Isaac Hepworth https://github.com/hepwori
-Verändere die URL um ein anderes Bild einzusetzen-->
-	<img src='https://hepwori.github.io/execorder/index.jpg'/> 
-  <!--Hier wird das editierbare Textfeld erzeugt und der Vorlagentext erstellt-->
-	<div class='eo' id='eo' contenteditable onkeypress='keypress(event);' style='font-size: 17px;' spellcheck='false'>
-		Hier klicken! Reinschreiben.
-		<br/><br/>
-		Drücke '&lt;' und '&gt;' um die Schriftgröße zu verändern.
-		<br/><br/>
-		dann poste einen Screenshot mit #dekretmix
-	</div>
+<body style="perspective: 400px">
+    <div style="margin: 50px; position: absolute; left: 0; top: 0; z-index: 50">
+        <!-- Hier kann die Bildquelle geändert werden -->
+        <img src="https://hepwori.github.io/execorder/index.jpg" />
+        <!-- Hier wird das editierbare Textfeld erzeugt und der Vorlagentext erstellt -->
+        <div class="eo" id="eo" contenteditable onkeypress="keypress(event);" style="font-size: 17px;" spellcheck="false">
+            Hier klicken! Reinschreiben.
+            <br /><br />
+            Drücke '&lt;' und '&gt;' um die Schriftgröße zu verändern.
+            <br /><br />
+            dann poste einen Screenshot mit #dekretmix
+        </div>
+    </div>
+    <!-- In der folgenden Funktion wird die Schriftgröße durch '<' und '>' veränderbar gemacht -->
+    <script type="text/javascript">
+        function keypress(e) {
+            var key = e.keyCode;
+            if (key != 60 && key != 62) return;
+            var adj = key == 60 ? -1 : +1;
+            var eo = document.getElementById("eo");
+            var size = parseInt(eo.style["font-size"]);
+            eo.style["font-size"] = size + adj + "px";
+            e.preventDefault();
+        }
+    </script>
 </body>
-   <!--In der folgenden Funktion wird die Schriftgröße durch '<' und '>' veränderbar gemacht --> 
-<script type='text/javascript'>
-function keypress(e) {
-	var key = e.keyCode;
-	if (key != 60 && key != 62) return;
-	var adj = (key == 60) ? -1 : +1;
-	var eo = document.getElementById('eo');
-	var size = parseInt(eo.style['font-size']);
-	eo.style['font-size'] = (size + adj) + 'px';
-	e.preventDefault();
-}
-</script>
 </html>
